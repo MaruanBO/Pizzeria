@@ -1,19 +1,16 @@
 <?php
 
-// Configuración global
-require_once 'config/global.php';
+// Introduce los archivos requeridos
+require_once 'core/init.php';
+require_once 'controladores/masasController.php';
+require_once 'controladores/ingredientesController.php';
 
-// Base para los controladores
-require_once 'core/ControllerBase.php';
+$masas = getAllMasas();
+$ingredientes = getAllIngredientes();
 
-// Funciones de los controladores frontales
-require_once 'core/ControllerFront.func.php';
+$smarty->assign("masas", $masas);
+$smarty->assign("ingredientes", $ingredientes);
 
-// Cargamos controladores y acciones
-if(isset($_GET["controller"])){
-    $controllerObj = loadController($_GET["controller"]);
-    launchAction($controllerObj);
-} else {
-    $controllerObj = loadController(CONTROLADOR_DEFECTO);
-    launchAction($controllerObj);
-}
+
+// Pinta el template
+$smarty->display("vistas/index.tpl");
