@@ -55,6 +55,12 @@ $error_update = false;
 
 if(!isset($_COOKIE['access_error'])) setcookie("access_error", 0, 0);
 
+// DEVUELVE TODOS LOS DATOS DE TODOS LOS USUARIOS
+function getAll(){
+    $usuario = new Usuario();
+    return $usuario->getAll();
+}
+
 // REALIZA LAS COMPROBACIONES TANTO DEL REGISTRO COMO DEL LOGIN.
 function login()
 {

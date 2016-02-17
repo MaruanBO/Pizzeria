@@ -48,14 +48,6 @@ class Usuario extends EntityBase
     public function updateUser()
     {
         $sql = "UPDATE usuario SET password = '" . $this->pass . "', email = '" . $this->email . "', nombre = '" . $this->nombre . "', firma = '" . $this->firma . "', avatar = '" . $this->avatar . "' WHERE login = '" . $this->login . "'";
-        /*$sql = "UPDATE usuario
-                SET
-                password = $this->pass,
-                email = $this->email,
-                nombre = $this->nombre,
-                firma = $this->firma,
-                avatar = $this->avatar
-                WHERE login = $this->login;";*/
         $query = $this->getDatabase()->query($sql);
         return $query;
     }

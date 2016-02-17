@@ -32,3 +32,8 @@ function getAllPedidos(){
     $pedido = new Pedido();
     return $pedido->getAllWithMasaName();
 }
+
+function updatePedido(){
+    $pedido = new Pedido();
+    return $pedido->updateById("servido", 1, "id_Pedido", $_POST['idPedido']);
+}

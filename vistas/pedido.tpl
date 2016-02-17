@@ -27,7 +27,7 @@
             var $uni = $("select[name='unidades'] option:selected").val();
 
             // Realiza la operación y la introduce dentro del INPUT
-            $("#precio").val((parseFloat($masa) + parseFloat($numIng)) * parseInt($uni) + " E");
+            $("#precio").val((parseFloat($masa) + parseFloat($numIng)) * parseInt($uni) + " €");
         };
     </script>
 </head>

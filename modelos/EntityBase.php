@@ -81,4 +81,10 @@ class EntityBase
         $query = $this->database->query($sql);
         return $query;
     }
+
+    public function updateById($colum, $value, $id, $valorId){
+        $sql = "UPDATE " . $this->table . " SET $colum = '$value' WHERE $id = $valorId";
+        $query = $this->database->query($sql);
+        return $query;
+    }
 }

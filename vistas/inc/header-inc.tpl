@@ -28,9 +28,9 @@
                         {/if}
                         <!-- Si el usuario registrado es 'ADMINISTRADOR' -->
                     {else}
-                        <li><a href="gestuser">Gestionar Usuarios</a></li>
+                        <li><a href="admingestuser">Gestionar Usuarios</a></li>
                         <li><a href="#">Gestionar Pizzeria</a></li>
-                        <li><a href="#">Historial Pedidos</a></li>
+                        <li><a href="adminhistorial">Historial Pedidos</a></li>
                     {/if}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
