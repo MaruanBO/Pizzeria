@@ -5,12 +5,8 @@ require_once 'core/init.php';
 require_once 'controladores/masasController.php';
 require_once 'controladores/ingredientesController.php';
 
-$masas = getAllMasas();
-$ingredientes = getAllIngredientes();
-
-$smarty->assign("masas", $masas);
-$smarty->assign("ingredientes", $ingredientes);
-
+$smarty->assign("masas", getAllMasas());
+$smarty->assign("ingredientes", getAllIngredientes());
 
 // Pinta el template
 $smarty->display("vistas/index.tpl");

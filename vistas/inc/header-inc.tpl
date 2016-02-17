@@ -28,7 +28,7 @@
                         {/if}
                         <!-- Si el usuario registrado es 'ADMINISTRADOR' -->
                     {else}
-                        <li><a href="#">Gestionar Usuarios</a></li>
+                        <li><a href="gestuser">Gestionar Usuarios</a></li>
                         <li><a href="#">Gestionar Pizzeria</a></li>
                         <li><a href="#">Historial Pedidos</a></li>
                     {/if}

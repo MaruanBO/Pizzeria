@@ -2,6 +2,34 @@
 <html lang="en">
 <head>
     {include file="vistas/inc/head-inc.tpl"}
+    <script>
+        // Al cargar la página iniciará este código.
+        $(document).ready(function () {
+            // Calcula el precio de los productos por defecto.
+            calcular();
+
+            // Al realizar algún cambio en el select vuelve a calcular los precios.
+            $("select").change(function(){
+                calcular();
+            });
+
+            // Al realizar algún cambio (marcando o desmarcando) chenbox vuelve a calcular el precio.
+            $("input[type='checkbox']").change(function() {
+                calcular();
+            });
+        });
+
+        // Función para calcular el coste de los datos seleccionados en el pedido.
+        var calcular = function(){
+            // Obtiene los datos para realizar la operación.
+            var $masa = $("select[name='masa'] option:selected").attr("name");
+            var $numIng= $('input:checkbox:checked').length;
+            var $uni = $("select[name='unidades'] option:selected").val();
+
+            // Realiza la operación y la introduce dentro del INPUT
+            $("#precio").val((parseFloat($masa) + parseFloat($numIng)) * parseInt($uni) + " E");
+        };
+    </script>
 </head>
 <body>
 {include file="vistas/inc/header-inc.tpl"}
@@ -26,7 +54,7 @@
                         <div class="col-md-4">
                             <select id="selectbasic" name="masa" class="form-control">
                                 {foreach key=mid item=masa from=$masas}
-                                    <option value="{$masa.id_masa}">{$masa.nombre}</option>
+                                    <option value="{$masa.id_masa}" name="{$masa.precio}">{$masa.nombre}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -56,6 +84,14 @@
                             </select>
                         </div>
                     </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Precio</label>
+                        <div class="col-md-4">
+                            <input id="precio" name="textinput" readonly type="text" placeholder="placeholder" class="form-control input-md">
+                        </div>
+                    </div>
                 </fieldset>
                 <hr />
                 <div class="form-group">
@@ -67,6 +103,5 @@
         </div>
     </div>
 </div>
-{include file="vistas/inc/footer-inc.tpl"}
 </body>
 </html>

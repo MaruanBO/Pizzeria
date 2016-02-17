@@ -16,7 +16,7 @@ function realizarPedido(){
     $pedido->setIngredientes(implode(',',$ingredientes));
     $pedido->setUnidades($unidades);
     $pedido->setFechayhora($fechayhora);
-    $pedido->setNumIng(0);
+    $pedido->setNumIng(count($ingredientes));
     $pedido->setServido(0);
 
     $isWork = $pedido->setPedido();
@@ -25,5 +25,10 @@ function realizarPedido(){
 
 function getPedidos(){
     $pedido = new Pedido();
-    return $pedido->getAllWithMasaName("login", $_SESSION['user']['login']);
+    return $pedido->getAllWithMasaNameBy("login", $_SESSION['user']['login']);
+}
+
+function getAllPedidos(){
+    $pedido = new Pedido();
+    return $pedido->getAllWithMasaName();
 }

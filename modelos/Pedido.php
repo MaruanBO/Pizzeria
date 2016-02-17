@@ -35,10 +35,20 @@ class Pedido extends EntityBase
         return $query;
     }
 
-    public function getAllWithMasaName($atributo, $valor)
+    public function getAllWithMasaNameBy($atributo, $valor)
     {
-        $sql = "SELECT masas.nombre, pedidos.ingredientes, pedidos.unidades, pedidos.fechayhora, pedidos.servido
-                FROM pedidos NATURAL JOIN masas WHERE $atributo = '$valor'";
+        $sql = "SELECT masas.nombre, masas.precio, pedidos.* FROM pedidos NATURAL JOIN masas WHERE $atributo = '$valor'";
+        $query = $this->getDatabase()->query($sql);
+
+        $resultSet = array();
+        while ($row = $query->fetch_assoc())
+            $resultSet[] = $row;
+        return $resultSet;
+    }
+
+    public function getAllWithMasaName()
+    {
+        $sql = "SELECT masas.nombre,  masas.precio, pedidos.* FROM pedidos NATURAL JOIN masas";
         $query = $this->getDatabase()->query($sql);
 
         $resultSet = array();
