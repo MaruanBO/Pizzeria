@@ -62,9 +62,15 @@ function getAll()
     return $usuario->getAll();
 }
 
-function updateUserAdmin()
+function deleteUser()
 {
     $usuario = new Usuario();
+    $usuario->deleteBy("login", $_POST['login']);
+}
+
+function getUser(){
+    $usuario = new Usuario();
+    return $usuario->getBy("login", $_POST['login']);
 }
 
 // REALIZA LAS COMPROBACIONES TANTO DEL REGISTRO COMO DEL LOGIN.
@@ -270,12 +276,14 @@ function updateAdmin()
     else $old = $_POST['pass'];
 
     $tipo = $_POST['tipo'];
+    $new = "";
+    $renew = "";
 
     // Comprueba que los campos del formulario no esten todos vacios.
     if (empty($old) && empty($tipo) && empty($avatar) && empty($nombre) && empty($email) && empty($firma)) {
         $GLOBALS['all_empty'] = true;
     } else {
-        if (sendUpdate($_POST['login'], $old, $new, $renew = 0, $nombre, $email, $avatar, $firma, $tipo)) {
+        if (sendUpdate($_POST['login'], $old, $new, $renew, $nombre, $email, $avatar, $firma, $tipo)) {
             if ($_POST['avatar2'] != $avatar && $_POST['avatar2'] != "perfil_default.jpg")
                 // Elimina la antigua imagen para no llenar el servidor de imagenes, por lo tanto solo hay una imagen por usuario.
                 @unlink("vistas/img/" . $_POST['avatar2']);

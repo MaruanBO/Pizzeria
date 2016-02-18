@@ -5,9 +5,11 @@ require_once 'core/init.php';
 require_once 'controladores/usuarioController.php';
 
 if (!isset($_SESSION['usuario_logueado']) && !$_SESSION['usuario_logueado'] && $_SESSION['user']['tipo'] != 2)
-    header('Location: ./index.php');
+    header('Location: ./');
 
-if(isset($_POST['update'])) updateAdmin();
+if (isset($_POST['change'])) header('Location: ./adminmodificar');
+if (isset($_POST['remove'])) deleteUser();
+if (isset($_POST['update'])) updateAdmin();
 
 $smarty->assign("usuarios", getAll());
 

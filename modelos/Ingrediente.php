@@ -6,6 +6,8 @@
  * Date: 14/02/2016
  * Time: 3:21
  */
+require_once 'EntityBase.php';
+
 class Ingrediente extends EntityBase
 {
 

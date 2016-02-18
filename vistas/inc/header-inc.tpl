@@ -29,7 +29,7 @@
                         <!-- Si el usuario registrado es 'ADMINISTRADOR' -->
                     {else}
                         <li><a href="admingestuser">Gestionar Usuarios</a></li>
-                        <li><a href="#">Gestionar Pizzeria</a></li>
+                        <li><a href="admingestpizzeria">Gestionar Pizzeria</a></li>
                         <li><a href="adminhistorial">Historial Pedidos</a></li>
                     {/if}
                 </ul>
