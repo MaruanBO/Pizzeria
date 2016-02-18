@@ -53,12 +53,18 @@ $success_update = false;
 // Error al actualizar.
 $error_update = false;
 
-if(!isset($_COOKIE['access_error'])) setcookie("access_error", 0, 0);
+if (!isset($_COOKIE['access_error'])) setcookie("access_error", 0, 0);
 
 // DEVUELVE TODOS LOS DATOS DE TODOS LOS USUARIOS
-function getAll(){
+function getAll()
+{
     $usuario = new Usuario();
     return $usuario->getAll();
+}
+
+function updateUserAdmin()
+{
+    $usuario = new Usuario();
 }
 
 // REALIZA LAS COMPROBACIONES TANTO DEL REGISTRO COMO DEL LOGIN.
@@ -208,6 +214,81 @@ function update()
 
 }
 
+function updateAdmin()
+{
+    $name = $_FILES["avatar"]["name"];
+    $tmp_name = $_FILES['avatar']['tmp_name'];
+    $dir = "vistas/img/";
+
+    // Si existe un nombre pasado por '$_FILES' y no esta vacio y no pesa mas de 500KB realizará las acciones de dentro.
+    if (isset ($name) && !empty($name) && ceil(filesize($tmp_name) / 1024) <= 500) {
+        $partes_ruta = pathinfo($name); // Obtiene información del archivo o imagen.
+        $ext = "." . $partes_ruta['extension']; // Obtiene la extensión del archivo que se ha subido.
+
+        // Comprueba los formatos del archivo subido, para comprobar que sean imagenes.
+        switch ($ext) {
+            case ".jpg":
+            case ".png":
+            case ".gif":
+                $nombreImagen = generateNames(70); // Genera un nombre con caracteres aleatorios para hacer única la imagen.
+
+                // Mueve el archivo indicado al lugar indicado move_uploaded_file(origen_cliente, destino_servidor)
+                if (move_uploaded_file($tmp_name, $dir . $nombreImagen . $ext))
+                    $avatar = $nombreImagen . $ext;
+
+                // Cambia los permisos de la imagen para que se pueda manipular.
+                chmod($dir . $nombreImagen . $ext, 0777);
+                break;
+
+            default:
+                $GLOBALS['avatar_error'] = false;
+                $avatar = $_POST['avatar2'];
+                break;
+        }
+
+    } else {
+        $avatar = $_POST['avatar2'];
+    }
+
+    // En caso de que la imagen sea muy grande muestra el mensaje de error siguiente.
+    if (isset ($name) && !empty($name) && ceil(filesize($tmp_name) / 1024) > 500)
+        $GLOBALS['avatar_error'] = false;
+
+    // Comprueban que los Input`s que contienen los datos (nombre, email, firma, etc.) no esten vacios;
+    // en caso de estar vacios los llena con los datos antiguos guardados en la session. Y si no lo estan
+    // introduce los datos en la variable privada correspondiente.
+    if (!empty($_POST['nombre'])) $nombre = $_POST['nombre'];
+    else $nombre = $_POST['nombre2'];
+
+    if (!empty($_POST['email'])) $email = $_POST['email'];
+    else $email = $_POST['email2'];
+
+    if (!empty($_POST['firma'])) $firma = $_POST['firma'];
+    else $firma = $_POST['firma2'];
+
+    if (!empty($_POST['old'])) $old = $_POST['old'];
+    else $old = $_POST['pass'];
+
+    $tipo = $_POST['tipo'];
+
+    // Comprueba que los campos del formulario no esten todos vacios.
+    if (empty($old) && empty($tipo) && empty($avatar) && empty($nombre) && empty($email) && empty($firma)) {
+        $GLOBALS['all_empty'] = true;
+    } else {
+        if (sendUpdate($_POST['login'], $old, $new, $renew = 0, $nombre, $email, $avatar, $firma, $tipo)) {
+            if ($_POST['avatar2'] != $avatar && $_POST['avatar2'] != "perfil_default.jpg")
+                // Elimina la antigua imagen para no llenar el servidor de imagenes, por lo tanto solo hay una imagen por usuario.
+                @unlink("vistas/img/" . $_POST['avatar2']);
+
+            $GLOBALS['success_update'] = true;
+
+        } else {
+            $GLOBALS['error_update'] = true;
+        }
+    }
+
+}
+
 // COMPRUEBA QUE LOS CAMPOS NO ESTEN VACIOS.
 function checkInputEmpty($login, &$pass, $pass2 = false, $email = false, $name = false, $firma = false)
 {
@@ -339,7 +420,7 @@ function loginActions($pass, $result)
  * 4.- Comprueba que la nueva contraseña y su repetición sean iguales.
  *
  */
-function sendUpdate($login, $old, &$new, $renew, $name, $email, $avatar, $firma)
+function sendUpdate($login, $old, &$new, $renew, $name, $email, $avatar, $firma, $tipo = false)
 {
 
     if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
@@ -377,6 +458,10 @@ function sendUpdate($login, $old, &$new, $renew, $name, $email, $avatar, $firma)
     $usuario->setEmail($email);
     $usuario->setAvatar($avatar);
     $usuario->setFirma($firma);
+
+    if ($tipo) $usuario->setTipo($tipo);
+    else $usuario->setTipo(1);
+
     $update = $usuario->updateUser();
 
     if ($update) return true;
@@ -403,7 +488,8 @@ function generateNames($long)
     return $name;
 }
 
-function generateCaptcha(){
+function generateCaptcha()
+{
     $caracteres = "QWERTYUIOPASDFGHJKLMNBVCXZ";
     $max = strlen($caracteres) - 1;
 

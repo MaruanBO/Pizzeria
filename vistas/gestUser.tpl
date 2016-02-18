@@ -23,12 +23,30 @@
                 var $row = $("tr#row" + $id + " > td");
                 $row.each(function (index) {
                     $("#val" + index).attr("placeholder", $(this).text());
+                    $("#hid" + index).attr("value", $(this).text());
                 });
 
-                $("#valLogin2").attr("value", $("tr#row" + $id + " td > span").text());
-                $("#valLogin").text($("tr#row" + $id + " td > span").text());
+                // Pass
+                $("#hidPass").attr("value", $("input#pass").val());
+                // Login
+                $("#valLogin").text($("tr#row" + $id + " td:nth-child(2)").text());
+                // Avatar
                 $("img#valImg").attr("src", $("img").attr("src"));
+                $("#hidAvatar").attr("value", $("input#nameImg").val());
+                // Tipo
+                $("#hidTipo").attr("value", $("input#tipo").val());
 
+
+                for (var i = 1; i <= 2; i++) {
+                    var name = "";
+                    (i == 1) ? name = "Cliente" : name = "Administrador";
+                    $("select#tipos").append("<option>" + name + "</option>");
+
+                    if ($("tr#row" + $id + " input#tipo").val() == i)
+                        $("#tipos > option:nth-child(" + i + ")").attr("value", i).attr("selected", "selected");
+                    else
+                        $("#tipos > option:nth-child(" + i + ")").attr("value", i);
+                }
             });
         });
     </script>
@@ -39,6 +57,40 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Gesti&oacute;n de Usuarios</h1>
+            {if $old_error eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> La 'contraseña antigua' no coincide con la anterior.
+                </div>
+            {elseif $new_error eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> La 'contraseña nueva' no cumple los requisitos.
+                </div>
+            {elseif $renew_error eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> Las contraseñas no coinciden.
+                </div>
+            {elseif $email_error eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> El 'email' introducido no cumple los requisitos.
+                </div>
+            {elseif $avatar_error eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> La foto de 'avatar' introducida no cumple los
+                    requisitos.
+                </div>
+            {elseif $all_empty eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> Todos los campos están vacios.
+                </div>
+            {elseif $success_update eq true}
+                <div class="alert alert-success" role="alert">
+                    <b>¡Se han actualizado los datos!</b>
+                </div>
+            {elseif $error_update eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> Vuelva a intentarlo más tarde.
+                </div>
+            {/if}
             <table id="tableUser" class="table table-hover">
                 <thead>
                 <tr>
@@ -56,13 +108,19 @@
                 {foreach key=uid item=usuario from=$usuarios}
                     <tr id="row{$uid}">
                         <td>{$uid}</td>
-                        <td><span>{$usuario.login}</span></td>
+                        <td>{$usuario.login}</td>
                         <td>{$usuario.email}</td>
                         <td>{$usuario.nombre}</td>
                         <td>{$usuario.firma}</td>
                         <td><img src="vistas/img/{$usuario.avatar}"></td>
                         <td>{if $usuario.tipo eq 1} Cliente {else} Administrador {/if}</td>
-                        <td><button id="{$uid}" class="btn btn-success" name="change">Modificar</button></td>
+                        <td>
+                            <button id="{$uid}" class="btn btn-success" name="change">Modificar</button>
+                        </td>
+                        <!-- hiddens para pasar info al formulario posterior -->
+                        <input type="hidden" id="pass" value="{$usuario.password}">
+                        <input type="hidden" id="nameImg" value="{$usuario.avatar}">
+                        <input type="hidden" id="tipo" value="{$usuario.tipo}">
                     </tr>
                 {/foreach}
                 </tbody>
@@ -89,10 +147,15 @@
                 </div>
                 <!-- /.jumbotron -->
                 <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                    <!-- hiddens para pasar a la base de datos -->
+                    <input type="hidden" id="hid0" name="login">
+                    <input type="hidden" id="hidPass" name="old">
+
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="exampleInputFile">Nuevo Avatar</label>
                         <div class="col-sm-10">
                             <input type="file" class="" id="exampleInputFile" name="avatar">
+                            <input type="hidden" id="hidAvatar" name="avatar2">
                             <p class="help-block">Tamaño máx. 500KB. Formatos permitidos jpg, gif y png.</p>
                         </div>
                     </div>
@@ -101,7 +164,7 @@
                         <label class="control-label col-sm-2" for="val3">Nombre</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="nombre" id="val3">
-                            <input type="hidden" id="valLogin2">
+                            <input type="hidden" id="hid3" name="nombre2">
                             <span class="help-block">Debe ser diferente al <i>Login</i>.</span>
                         </div>
                     </div>
@@ -110,8 +173,9 @@
                         <label class="control-label col-sm-2" for="val2">Email</label>
                         <div class="col-sm-10">
                             <input type="email" class="form-control" name="email" id="val2">
+                            <input type="hidden" id="hid2" name="email2">
                             <span class="help-block">Debe contener una @ y un domino. <i>"Ejemplo:
-                                ejemplo@gmail.com"</i>.</span>
+                                    ejemplo@gmail.com"</i>.</span>
                         </div>
                     </div>
                     <!-- /.form-group -->
@@ -119,16 +183,17 @@
                         <label class="control-label col-sm-2" for="val4">Firma</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="firma" id="val4">
+                            <input type="hidden" id="hid4" name="firma2">
                         </div>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="selectbasic">Tipo</label>
                         <div class="col-sm-10">
-                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                <option value="1">Cliente</option>
-                                <option value="2">Administrador</option>
+                            <select id="tipos" name="tipo" class="form-control">
+
                             </select>
+                            <input type="hidden" id="hidTipo" name="tipo2">
                         </div>
                     </div>
                     <!-- /.form-group -->
