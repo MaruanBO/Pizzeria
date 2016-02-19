@@ -21,9 +21,9 @@
                         <li><a href="index#masas">Masas</a></li>
                         <li><a href="index#ingredientes">Ingredientes</a></li>
                         <li><a href="index#contacto">Contacto</a></li>
-                        <li><a href="pedido">Nuevo Pedido</a></li>
                         <!-- Si hay algun usuario registrado -->
                         {if $tipo_user eq 1}
+                            <li><a href="pedido">Nuevo Pedido</a></li>
                             <li><a href="historial">Mis Pedidos</a></li>
                         {/if}
                         <!-- Si el usuario registrado es 'ADMINISTRADOR' -->

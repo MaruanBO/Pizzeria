@@ -6,6 +6,8 @@ require_once 'controladores/masasController.php';
 require_once 'controladores/ingredientesController.php';
 require_once 'controladores/pedidosController.php';
 
+if (!isset($_SESSION['usuario_logueado']) && !$_SESSION['usuario_logueado']) header('Location: ./index.php');
+
 $smarty->assign("error_pedido", false);
 
 if(isset($_POST['do_pedido'])){

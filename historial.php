@@ -10,6 +10,8 @@ if (!isset($_SESSION['usuario_logueado']) && !$_SESSION['usuario_logueado']) hea
 
 $smarty->assign("pedidos", getPedidos());
 $smarty->assign("user_tipo", 1);
+$smarty->assign("error", true);
+$smarty->assign("success", false);
 
 // Pinta el template
 $smarty->display("vistas/historial.tpl");

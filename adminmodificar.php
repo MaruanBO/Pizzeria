@@ -26,4 +26,4 @@ if (isset($_POST['login'])){
 
 
 // Pinta el template
-$smarty->display("vistas/adminmodificar.tpl");
+$smarty->display("vistas/adminModificar.tpl");

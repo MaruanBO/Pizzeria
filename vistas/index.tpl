@@ -56,7 +56,7 @@
                 {foreach key=mid item=masa from=$masas}
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="{$masa.img}" alt="Masa {$masa.nombre}">
+                            <img src="/vistas/img/masas/{$masa.img}" alt="Masa {$masa.nombre}">
                             <div class="caption">
                                 <h3>{$masa.nombre}</h3>
                                 <p>{$masa.descripcion}</p>
@@ -70,7 +70,7 @@
             <!-- /.row -->
             <!-- /MASAS -->
             <hr>
-            <h1 id="ingredientes">Ingredientes <small>Para hacer tu pizza a tu gusto</small></h1>
+            <h1 id="ingredientes">Ingredientes <small> Haz la pizza a tu gusto</small></h1>
             <div class="row">
                 {foreach key=iid item=ingrediente from=$ingredientes}
                     <div class="col-sm-6 col-md-4">

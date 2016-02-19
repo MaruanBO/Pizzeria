@@ -38,6 +38,24 @@ class Masa extends EntityBase
      * METODOS
      */
 
+    public function updateThis()
+    {
+        $sql = "UPDATE " . $this->table . " SET descripcion = '$this->descripcion', tamano = $this->tamano, precio = $this->precio, img = '$this->img', nombre = '$this->nombre' WHERE id_masa = $this->id_masas";
+        $query = $this->getDatabase()->query($sql);
+        return $query;
+    }
+
+    public function insert()
+    {
+        $sql = "INSERT INTO masas (descripcion, tamano, precio, img, nombre)
+                VALUES ('$this->descripcion', $this->tamano, $this->precio, '$this->img', '$this->nombre')";
+        $query = $this->getDatabase()->query($sql);
+        $file = fopen("modelos/sentencias.txt", "a+");
+        fwrite($file, $sql);
+        fclose($file);
+        return $query;
+    }
+
     /*
      * GETTERS & SETTERS
      */

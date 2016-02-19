@@ -26,6 +26,13 @@ class Ingrediente extends EntityBase
         parent::__construct($this->table);
     }
 
+    public function updateThis()
+    {
+        $sql = "UPDATE " . $this->table . " SET nombreIng = '$this->nombreIng', descripcion = '$this->descripcion', img = '$this->img' WHERE nombreIng = '$this->nombreIng'";
+        $query = $this->getDatabase()->query($sql);
+        return $query;
+    }
+
     /**
      * @return mixed
      */

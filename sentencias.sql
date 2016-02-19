@@ -19,6 +19,11 @@
 -- Table structure for table `ingredientes`
 --
 
+DROP DATABASE IF EXISTS pizzeria;
+CREATE DATABASE pizzeria;
+
+USE pizzeria;
+
 DROP TABLE IF EXISTS `ingredientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -36,15 +41,15 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES ('Aceitunas','Negras','http://bucket1.glanacion.com/anexos/fotos/73/1582773.jpg'),
-  ('Atún','Natural','http://www.remediosnaturalesmujer.com/wp-content/uploads/2015/10/dieta-del-atun-y-la-pi%C3%B1a.jpg'),
-  ('Bacon',' ','http://cdn4.cronicasgeek.com/wp-content/uploads/2015/12/bacon-1.jpg'),
-  ('Cebolla',' ','http://radiogastronomia.com/wp-content/uploads/2015/07/cebollas.jpg'),
-  ('Extra de mozarella',' ','http://www.italysbestrome.com/wp-content/uploads/2015/03/Mozzarella-GIGLIO.jpg'),
-  ('Jamón','York','http://dermasanaactualidad.com/wp-content/uploads/2013/05/dermasana-actualidad-incluye-jamon-york-en-tu-dieta-y-gana-salud.jpg'),
-  ('Pimiento','Rojo','http://www.fructifera.es/147-thickbox_default/pimiento-rojo.jpg'),
-  ('Piña','En su jugo','http://mamaconeja.com/wpmamaconeja/wp-content/uploads/2014/11/ISS_2374_02356.jpg'),
-  ('Tomate','Tomate natural','http://static.hogarmania.com/archivos/201105/xsalsa-tomate-xl-668x400x80xX.jpg.pagespeed.ic.q4cTh3BgL_.jpg');
+INSERT INTO `ingredientes` VALUES ('Aceitunas','Negras','aceitunas.jpg'),
+  ('Atún','Natural','atun.jpg'),
+  ('Bacon',' ','bacon.jpg'),
+  ('Cebolla',' ','cebolla.jpg'),
+  ('Extra de mozarella',' ','mozarella.jpg'),
+  ('Jamón','York','york.jpg'),
+  ('Pimiento','Rojo','pimiento.jpg'),
+  ('Piña','En su jugo','piña.jpg'),
+  ('Tomate','Tomate natural','tomate.jpg');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +61,7 @@ DROP TABLE IF EXISTS `masas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `masas` (
-  `id_masa` tinyint(4) NOT NULL DEFAULT '1',
+  `id_masa` tinyint(4) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(200) DEFAULT NULL,
   `tamano` decimal(3,2) NOT NULL DEFAULT '1.00',
   `precio` decimal(4,2) DEFAULT NULL,
@@ -72,9 +77,9 @@ CREATE TABLE `masas` (
 
 LOCK TABLES `masas` WRITE;
 /*!40000 ALTER TABLE `masas` DISABLE KEYS */;
-INSERT INTO `masas` VALUES (1,'Nuestra pizza más fina, ligera, crujiente y con todo el sabor de L\'Italien.',0.75,11.50,'http://www.pizzahut.es/images/12.jpg','Fina'),
-  (2,'Nuestra masa tradicional cubierta con tus ingredientes favoritos.',0.50,8.90,'http://www.pizzahut.es/images/13.jpg','Clásica'),
-  (3,'Masa fina y ligera con el borde relleno de delicioso queso fundido. Desde 1995.',1.00,13.95,'http://www.pizzahut.es/images/15.jpg','Rellena');
+INSERT INTO `masas` VALUES (1,'Nuestra pizza más fina, ligera y crujiente',0.75, 11.50,'fina.jpg','Fina'),
+  (2,'Nuestra masa tradicional cubierta con tus ingredientes favoritos.',0.50, 8.90,'clasica.jpg','Clásica'),
+  (3,'Masa fina y ligera con el borde relleno de delicioso queso fundido. Desde 1995.', 1.00, 13.95, 'rellena.jpg','Rellena');
 /*!40000 ALTER TABLE `masas` ENABLE KEYS */;
 UNLOCK TABLES;
 
