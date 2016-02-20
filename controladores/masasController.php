@@ -127,5 +127,25 @@ function insertMasa()
     $masa->setPrecio($precio);
     $masa->setTamano($tamano);
 
-    return $masa->insert();
+    return $masa->setMasa();
+}
+
+/**
+ * @param $long
+ * @return string
+ *
+ * Genera nombres del tamaño pasado por parametros con caracteres al azar.
+ */
+function generateNames($long)
+{
+    $date = new DateTime();
+    $fecha = $date->format("d-m-Y");
+    $hora = $date->format("H-i-s");
+
+    $chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM-_1234567890";
+    $chars_long = strlen($chars) - 1;
+    $name = "DF" . $fecha . "DT" . $hora . "IN";
+    for ($i = 0; $i < $long; $i++)
+        $name .= $chars{mt_rand(0, $chars_long)};
+    return $name;
 }

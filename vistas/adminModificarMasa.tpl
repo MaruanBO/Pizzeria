@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="val2">Tamaño</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" name="tamano" id="val2" placeholder="{$tamano}">
+                            <input type="number" step="any" class="form-control" name="tamano" id="val2" placeholder="{$tamano}">
                             <input type="hidden" value="{$tamano}" name="tamano2">
                             <span class="help-block">Tamaño <i>diametro</i> de la masa.</span>
                         </div>
@@ -86,7 +86,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="val2">Precio</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" name="precio" id="val2" placeholder="{$precio}">
+                            <input type="number" step="any" class="form-control" name="precio" id="val2" placeholder="{$precio}">
                             <input type="hidden" value="{$precio}" name="precio2">
                             <span class="help-block">Precio de la masa.</span>
                         </div>

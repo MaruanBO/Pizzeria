@@ -21,6 +21,11 @@ if (isset($_POST['removeIng'])) {
     else $smarty->assign("error", true);
 }
 
+if (isset($_POST['saveIng'])) {
+    if (insertIng()) $smarty->assign("success", true);
+    else $smarty->assign("error", true);
+}
+
 if (isset($_POST['updateMasa'])) {
     if (updateMasa()) $smarty->assign("success", true);
     else $smarty->assign("error", true);
@@ -41,4 +46,4 @@ $smarty->assign("ingredientes", getAllIngredientes());
 
 
 // Pinta el template
-$smarty->display("vistas/gestPizzeria.tpl");
+$smarty->display("vistas/gestPizza.tpl");

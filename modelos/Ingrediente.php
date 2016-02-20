@@ -33,6 +33,17 @@ class Ingrediente extends EntityBase
         return $query;
     }
 
+    public function setIngrediente()
+    {
+        $sql = "INSERT INTO ingredientes (nombreIng, descripcion, img)
+                VALUES ('$this->nombreIng', '$this->descripcion', '$this->img')";
+        $query = $this->getDatabase()->query($sql);
+        /*$file = fopen("modelos/sentencias.txt", "a+");
+        fwrite($file, $sql);
+        fclose($file);*/
+        return $query;
+    }
+
     /**
      * @return mixed
      */

@@ -23,7 +23,7 @@
                     </form>
                 </div>
                 <div class="col-md-10">
-                    <h1>Añadir Masa</h1>
+                    <h1>Añadir Ingrediente</h1>
                 </div>
             </div>
             <hr />
@@ -32,7 +32,7 @@
                     <form class="form-horizontal" role="form" method="post" action="admingestpizzeria"
                           enctype="multipart/form-data">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="exampleInputFile">Introducir Imagen</label>
+                            <label class="control-label col-sm-2" for="exampleInputFile">Insertar Imagen</label>
                             <div class="col-sm-10">
                                 <input type="file" class="" id="exampleInputFile" name="avatar" required>
                                 <p class="help-block">Tamaño máx. 500KB. Formatos permitidos jpg, gif y png.</p>
@@ -42,40 +42,23 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="val3">Nombre</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nombre" placeholder="Enter name" required>
-                                <span class="help-block">Nombre de la masa.</span>
+                                <input type="text" class="form-control" name="nombre" id="val3" placeholder="Enter nombre">
+                                <span class="help-block">Nombre del ingrediente.</span>
                             </div>
                         </div>
                         <!-- /.form-group -->
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="val2">Descripción</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="descripcion"
-                                       placeholder="Enter descripcion">
-                                <span class="help-block">Descripción de la masa.</span>
-                            </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="val2">Tamaño</label>
-                            <div class="col-sm-10">
-                                <input type="number" step="any" class="form-control" name="tamano" placeholder="Enter Tamaño" required>
-                                <span class="help-block">Tamaño <i>diametro</i> de la masa.</span>
-                            </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="val2">Precio</label>
-                            <div class="col-sm-10">
-                                <input type="number" step="any" class="form-control" name="precio" placeholder="Enter Precio" required>
-                                <span class="help-block">Precio de la masa.</span>
+                                <input type="text" class="form-control" name="descripcion" placeholder="Enter descripción">
+                                <span class="help-block">Descripción del ingrediente.</span>
                             </div>
                         </div>
                         <!-- /.form-group -->
                         <hr/>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" name="saveMasa" class="btn btn-primary">Guardar</button>
+                                <button type="submit" name="saveIng" class="btn btn-primary">Guardar</button>
                             </div>
                         </div>
                         <!-- /.form-group -->

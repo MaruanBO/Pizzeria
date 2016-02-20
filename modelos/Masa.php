@@ -45,14 +45,14 @@ class Masa extends EntityBase
         return $query;
     }
 
-    public function insert()
+    public function setMasa()
     {
         $sql = "INSERT INTO masas (descripcion, tamano, precio, img, nombre)
                 VALUES ('$this->descripcion', $this->tamano, $this->precio, '$this->img', '$this->nombre')";
         $query = $this->getDatabase()->query($sql);
-        $file = fopen("modelos/sentencias.txt", "a+");
+        /*$file = fopen("modelos/sentencias.txt", "a+");
         fwrite($file, $sql);
-        fclose($file);
+        fclose($file);*/
         return $query;
     }
 

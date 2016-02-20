@@ -75,7 +75,7 @@
                                 </form>
                                 <form method="post">
                                     <button class="btn btn-danger" name="removeMasa">Eliminar</button>
-                                    <input type="hidden" name="login" value="{$masa.id_masa}">
+                                    <input type="hidden" name="id_masa" value="{$masa.id_masa}">
                                 </form>
                             </td>
                         </tr>
@@ -114,7 +114,7 @@
                             <td>{$ingrediente.descripcion}</td>
                             <td><img src="vistas/img/ingredientes/{$ingrediente.img}"></td>
                             <td style="text-align: center">
-                                <form method="post" action="adminmodificaringredientes">
+                                <form method="post" action="adminmodificaringrediente">
                                     <button class="btn btn-info" name="update">Modificar</button>
                                     <input type="hidden" name="nombre" value="{$ingrediente.nombreIng}">
                                 </form>
