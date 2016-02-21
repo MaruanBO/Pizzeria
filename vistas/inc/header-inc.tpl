@@ -42,7 +42,7 @@
                             <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
                             <!-- Si el usuario registrado no es 'ADMINISTRADOR' -->
                         {else}
-                            <li><a>{$user} [{$login}]</a></li>
+                            <li><a>{$user} [{$login}] - {$time}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -54,7 +54,7 @@
                         {/if}
                         <!-- Si el usuario registrado es 'ADMINISTRADOR' -->
                     {else}
-                        <li><a>{$user} [Administrador]</a></li>
+                        <li><a>{$user} [Administrador] · {$time}</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                             <ul class="dropdown-menu">

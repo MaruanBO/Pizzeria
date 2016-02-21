@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     {include file="vistas/inc/head-inc.tpl"}
+    <style>
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
 {include file="vistas/inc/header-inc.tpl"}

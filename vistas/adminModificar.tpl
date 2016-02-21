@@ -14,6 +14,11 @@
         td > button {
             width: 100px;
         }
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
     </style>
     <script>
         $(document).ready(function () {

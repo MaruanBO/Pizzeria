@@ -210,6 +210,8 @@ function update()
             $_SESSION['user']['email'] = $email;
             $_SESSION['user']['firma'] = $firma;
             $_SESSION['user']['pass'] = $new;
+            $dateTime = new DateTime();
+            $_SESSION['user']['time'] = $dateTime->format('d-m-Y H:i:s');
 
             $GLOBALS['success_update'] = true;
 
