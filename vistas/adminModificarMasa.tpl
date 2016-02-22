@@ -77,16 +77,22 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="val2">Tamaño</label>
                         <div class="col-sm-10">
-                            <input type="number" step="any" class="form-control" name="tamano" id="val2" placeholder="{$tamano}">
+                            <div class="input-group">
+                                <input type="number" step="any" class="form-control" placeholder="{$tamano}" name="tamano" aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="basic-addon2">cm</span>
+                            </div>
                             <input type="hidden" value="{$tamano}" name="tamano2">
-                            <span class="help-block">Tamaño <i>diametro</i> de la masa.</span>
+                            <span class="help-block"><i>Grosor</i> de la masa.</span>
                         </div>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="val2">Precio</label>
                         <div class="col-sm-10">
-                            <input type="number" step="any" class="form-control" name="precio" id="val2" placeholder="{$precio}">
+                            <div class="input-group">
+                                <input type="number" step="any" class="form-control" placeholder="{$precio}" name="precio" aria-describedby="basic-addon">
+                                <span class="input-group-addon" id="basic-addon">€</span>
+                            </div>
                             <input type="hidden" value="{$precio}" name="precio2">
                             <span class="help-block">Precio de la masa.</span>
                         </div>

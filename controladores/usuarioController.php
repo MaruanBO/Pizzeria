@@ -62,12 +62,14 @@ function getAll()
     return $usuario->getAll();
 }
 
+// ELIMINA EL USUARIO CON LA CLAVE PRIMARIA INTRODUCIDA.
 function deleteUser()
 {
     $usuario = new Usuario();
     $usuario->deleteBy("login", $_POST['login']);
 }
 
+// MUESTRA LOS DATOS DEL USUARIO ENVIANDO LA CLAVE PRIMARIA
 function getUser(){
     $usuario = new Usuario();
     return $usuario->getBy("login", $_POST['login']);
@@ -202,7 +204,7 @@ function update()
     if (empty($old) && empty($new) && empty($renew) && empty($avatar) && empty($nombre) && empty($email) && empty($firma)) {
         $GLOBALS['all_empty'] = true;
     } else {
-        if (sendUpdate($_SESSION['user']['login'], $old, $new, $renew, $nombre, $email, $avatar, $firma)) {
+        if (sendUpdate($_SESSION['user']['login'], $old, $new, $renew, $nombre, $email, $avatar, $firma, $_SESSION['user']['tipo'])) {
             if ($_SESSION['user']['avatar'] != $avatar && $_SESSION['user']['avatar'] != "perfil_default.jpg")
                 @unlink("img/" . $_SESSION['user']['avatar']); // Elimina la antigua imagen para no llenar el servidor de imagenes, por lo tanto solo hay una imagen por usuario.
             $_SESSION['user']['avatar'] = $avatar;
@@ -222,6 +224,7 @@ function update()
 
 }
 
+// COMPRUEBA LOS CAMPOS DEL UPDATE CUANDO LO REALIZA EL ADMINISTRADOR.
 function updateAdmin()
 {
     $name = $_FILES["avatar"]["name"];
@@ -468,7 +471,6 @@ function sendUpdate($login, $old, &$new, $renew, $name, $email, $avatar, $firma,
     $usuario->setEmail($email);
     $usuario->setAvatar($avatar);
     $usuario->setFirma($firma);
-
     if ($tipo) $usuario->setTipo($tipo);
     else $usuario->setTipo(1);
 
@@ -498,6 +500,7 @@ function generateNames($long)
     return $name;
 }
 
+// GENERA LAS LETRAS DEL CAPTCHA.
 function generateCaptcha()
 {
     $caracteres = "QWERTYUIOPASDFGHJKLMNBVCXZ";

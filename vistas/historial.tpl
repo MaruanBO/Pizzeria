@@ -70,6 +70,8 @@
                                 <td>
                                     <button type="submit" name="isServido" class="btn btn-success">Servido</button>
                                 </td>
+                            {else}
+                                <td></td>
                             {/if}
                         </form>
                         </tr>

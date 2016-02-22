@@ -1,0 +1,31 @@
+<div id="map"></div>
+<script>
+    function initMap() {
+        var myPos = {
+            lat: 48.856614000,
+            lng: 2.352221900
+        };
+
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+            center: myPos,
+            scrollwheel: false,
+            zoom: 16
+        });
+
+        var image = {
+            url: 'vistas/img/tag.png'
+        };
+
+
+        var marker = new google.maps.Marker({
+            position: myPos,
+            map: map,
+            icon: image,
+            title: '¡Estamos aqui!'
+
+        });
+
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>

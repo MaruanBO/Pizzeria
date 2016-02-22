@@ -32,6 +32,16 @@ html, body {
     margin-top: -30px;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 @media (min-width: 1000px) {
     .container-carousel {
         width: 100%;

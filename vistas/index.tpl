@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     {include file="vistas/inc/head-inc.tpl"}
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
 {include file="vistas/inc/header-inc.tpl"}
@@ -52,6 +58,7 @@
             </div>
             <!-- /.page-header -->
             <h1 id="masas">Masas</h1>
+            <br />
             <div class="row">
                 {foreach key=mid item=masa from=$masas}
                     <div class="col-sm-6 col-md-4">
@@ -70,12 +77,16 @@
             <!-- /.row -->
             <!-- /MASAS -->
             <hr>
-            <h1 id="ingredientes">Ingredientes <small> Haz la pizza a tu gusto</small></h1>
+            <h1 id="ingredientes">Ingredientes
+                <small> Haz la pizza a tu gusto</small>
+            </h1>
+            <br />
             <div class="row">
                 {foreach key=iid item=ingrediente from=$ingredientes}
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="vistas/img/ingredientes/{$ingrediente.img}" alt="Ingrediente {$ingrediente.nombre}" style="width: 100%; height: 250px;">
+                            <img src="vistas/img/ingredientes/{$ingrediente.img}"
+                                 alt="Ingrediente {$ingrediente.nombre}" style="width: 100%; height: 250px;">
                             <div class="caption">
                                 <h3>{$ingrediente.nombreIng}</h3>
                             </div>
@@ -87,15 +98,34 @@
             </div>
             <!-- /.row -->
             <!-- /PIZZAS -->
+            <hr />
+            <h1>¿Donde estamos?</h1>
+            <br />
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<div class="row">
+    <div class="col-md-12">
+        {include file="vistas/inc/map.html"}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
             <hr/>
             <h1 id="contacto">Contacto</h1>
+            <br />
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="name">Nombre</label>
                     <div class="col-md-4">
                         <input id="name" name="nombre" type="text" placeholder="Introduzca su nombre"
-                               class="form-control input-md">
+                               class="form-control input-md" required>
                     </div>
                 </div>
 
@@ -104,7 +134,7 @@
                     <label class="col-md-4 control-label" for="email">Email</label>
                     <div class="col-md-4">
                         <input id="email" name="email" type="email" placeholder="Introduzca su email"
-                               class="form-control input-md">
+                               class="form-control input-md" required>
                     </div>
                 </div>
 
@@ -113,7 +143,7 @@
                     <label class="col-md-4 control-label" for="asunto">Asunto</label>
                     <div class="col-md-4">
                         <input id="asunto" name="asunto" type="text" placeholder="Introduzca el asunto"
-                               class="form-control input-md">
+                               class="form-control input-md" required>
                     </div>
                 </div>
 
@@ -122,9 +152,17 @@
                     <label class="col-md-4 control-label" for="mensaje">Mensaje</label>
                     <div class="col-md-4">
                         <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Escriba aquí"
-                                  style="resize: vertical;"></textarea>
+                                  style="resize: vertical;" required></textarea>
                     </div>
                 </div>
+                <!-- /.form-group -->
+                <hr/>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8" style="text-align: center">
+                        <button type="submit" name="send" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+                <!-- /.form-group -->
             </form>
             <!-- /.form-horizontal -->
         </div>

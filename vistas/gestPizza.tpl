@@ -114,7 +114,7 @@
                             <td>{$ingrediente.descripcion}</td>
                             <td><img src="vistas/img/ingredientes/{$ingrediente.img}"></td>
                             <td style="text-align: center">
-                                <form method="post" action="adminmodificaringrediente">
+                                <form method="post" action="adminmodificaringredientes">
                                     <button class="btn btn-info" name="update">Modificar</button>
                                     <input type="hidden" name="nombre" value="{$ingrediente.nombreIng}">
                                 </form>
