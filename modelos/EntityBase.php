@@ -47,16 +47,6 @@ class EntityBase
         return $resultSet;
     }
 
-    public function getById($id)
-    {
-        $sql = "SELECT * FROM " . $this->table . " WHERE id = $id";
-        $query = $this->database->query($sql);
-        $resultSet = array();
-        while ($row = $query->fetch_assoc())
-            $resultSet[] = $row;
-        return $resultSet;
-    }
-
     public function getBy($column, $value)
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE $column = '$value'";
@@ -66,13 +56,6 @@ class EntityBase
         while ($row = $query->fetch_assoc())
             $resultSet[] = $row;
         return $resultSet;
-    }
-
-    public function deleteById($id)
-    {
-        $sql = "DELETE FROM " . $this->table . " WHERE id = $id";
-        $query = $this->database->query($sql);
-        return $query;
     }
 
     public function deleteBy($column, $value)

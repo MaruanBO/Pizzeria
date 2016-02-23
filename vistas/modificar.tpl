@@ -37,7 +37,7 @@
                 <!-- /.row -->
             </div>
             <!-- /.jumbotron -->
-            {elseif $all_empty eq true}
+            {if $all_empty eq true}
                 <div class="alert alert-danger" role="alert">
                     <b>¡No se han podido actualizar los datos!</b> Todos los campos están vacios.
                 </div>
