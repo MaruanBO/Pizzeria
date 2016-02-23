@@ -2,12 +2,23 @@
 <html lang="en">
 <head>
     {include file="vistas/inc/head-inc.tpl"}
-    <style>
-        #map {
-            width: 100%;
-            height: 500px;
-        }
-    </style>
+    <script>
+        $(document).ready(function () {
+            $("#goUp").click(function () {
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            var $btn = $("#btn-up");
+            ($(window).scrollTop() >= 80) ? $btn.show(): $btn.hide();
+        });
+
+        $(window).scroll(function () {
+            var $btn = $("#btn-up");
+            ($(window).scrollTop() >= 80) ? $btn.show() : $btn.hide();
+        });
+    </script>
 </head>
 <body>
 {include file="vistas/inc/header-inc.tpl"}
@@ -158,7 +169,7 @@
                 <!-- /.form-group -->
                 <hr/>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-8" style="text-align: center">
+                    <div class="col-sm-offset-2 col-sm-7" style="text-align: center">
                         <button type="submit" name="send" class="btn btn-primary">Enviar</button>
                     </div>
                 </div>
@@ -171,6 +182,10 @@
     <!-- /.row -->
 </div>
 <!-- /.container -->
+<div id="btn-up">
+    <button id="goUp" class="btn btn-default"><span class="glyphicon glyphicon-chevron-up"></span></button>
+</div>
+<!-- /#btn-up -->
 {include file="vistas/inc/footer-inc.tpl"}
 <!-- /footer -->
 </body>

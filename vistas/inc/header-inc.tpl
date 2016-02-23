@@ -1,8 +1,3 @@
-<script>
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    })
-</script>
 <header>
     <nav class="navbar navbar-default">
         <div class="container">
@@ -48,7 +43,7 @@
                             <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
                             <!-- Si el usuario registrado no es 'ADMINISTRADOR' -->
                         {else}
-                            <li><a>{$user} [{$login}] - {$time}</a></li>
+                            <li><a>{$user} [{$login}]</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -60,7 +55,7 @@
                         {/if}
                         <!-- Si el usuario registrado es 'ADMINISTRADOR' -->
                     {else}
-                        <li><a>{$user} [Administrador] · {$time}</a></li>
+                        <li><a>{$user} [Administrador]</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -77,21 +72,5 @@
         <!-- /.container-fluid -->
     </nav>
 </header>
-
-<div class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<!-- /header -->
+{include file="vistas/inc/modal-inc.tpl"}

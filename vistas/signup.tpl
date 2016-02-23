@@ -126,6 +126,5 @@
         </div>
     </div>
 </div>
-{include file="vistas/inc/footer-inc.tpl"}
 </body>
 </html>

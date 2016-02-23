@@ -37,27 +37,6 @@
                 <!-- /.row -->
             </div>
             <!-- /.jumbotron -->
-            {if $old_error eq true}
-                <div class="alert alert-danger" role="alert">
-                    <b>¡No se han podido actualizar los datos!</b> La 'contraseña antigua' no coincide con la anterior.
-                </div>
-            {elseif $new_error eq true}
-                <div class="alert alert-danger" role="alert">
-                    <b>¡No se han podido actualizar los datos!</b> La 'contraseña nueva' no cumple los requisitos.
-                </div>
-            {elseif $renew_error eq true}
-                <div class="alert alert-danger" role="alert">
-                    <b>¡No se han podido actualizar los datos!</b> Las contraseñas no coinciden.
-                </div>
-            {elseif $email_error eq true}
-                <div class="alert alert-danger" role="alert">
-                    <b>¡No se han podido actualizar los datos!</b> El 'email' introducido no cumple los requisitos.
-                </div>
-            {elseif $avatar_error eq true}
-                <div class="alert alert-danger" role="alert">
-                    <b>¡No se han podido actualizar los datos!</b> La foto de 'avatar' introducida no cumple los
-                    requisitos.
-                </div>
             {elseif $all_empty eq true}
                 <div class="alert alert-danger" role="alert">
                     <b>¡No se han podido actualizar los datos!</b> Todos los campos están vacios.
@@ -79,6 +58,12 @@
                         <p class="help-block">Tamaño máx. 500KB. Formatos permitidos jpg, gif y png.</p>
                     </div>
                 </div>
+                {if $avatar_error eq true}
+                <div class="alert alert-danger" role="alert">
+                    <b>¡No se han podido actualizar los datos!</b> La foto de 'avatar' introducida no cumple los
+                    requisitos.
+                </div>
+                {/if}
                 <!-- /.form-group -->
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="oldpwd">Contraseña Antigua</label>
@@ -86,6 +71,11 @@
                         <input type="password" class="form-control" name="old" id="oldpwd"
                                placeholder="Enter Contraseña">
                         <span class="help-block">La contraseña tiene que coincidir con la anterior.</span>
+                        {if $old_error eq true}
+                            <div class="alert alert-danger" role="alert">
+                                <b>¡No se han podido actualizar los datos!</b> La 'contraseña antigua' no coincide con la anterior.
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <!-- /.form-group -->
@@ -94,6 +84,11 @@
                     <div class="col-sm-10">
                         <input type="password" class="form-control" name="new" id="pwd" placeholder="Enter Contraseña">
                         <span class="help-block">La contraseña tiene que contener mínimo 8 carácteres. Y debe tener 1 mayuscula, mínuscula y un número.</span>
+                        {if $new_error eq true}
+                            <div class="alert alert-danger" role="alert">
+                                <b>¡No se han podido actualizar los datos!</b> La 'contraseña nueva' no cumple los requisitos.
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <!-- /.form-group -->
@@ -103,6 +98,11 @@
                         <input type="password" class="form-control" name="renew" id="repwd"
                                placeholder="Enter Contraseña">
                         <span class="help-block">La contraseña tiene que coincidir con la anterior.</span>
+                        {if $renew_error eq true}
+                            <div class="alert alert-danger" role="alert">
+                                <b>¡No se han podido actualizar los datos!</b> Las contraseñas no coinciden.
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <!-- /.form-group -->
@@ -120,6 +120,11 @@
                         <input type="email" class="form-control" name="email" id="email" placeholder="{$mail}">
                         <span class="help-block">Debe contener una @ y un domino. <i>"Ejemplo:
                                 ejemplo@gmail.com"</i>.</span>
+                        {if $email_error eq true}
+                            <div class="alert alert-danger" role="alert">
+                                <b>¡No se han podido actualizar los datos!</b> El 'email' introducido no cumple los requisitos.
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <!-- /.form-group -->
@@ -145,7 +150,5 @@
     <!-- /.row -->
 </div>
 <!-- /.container -->
-{include file="vistas/inc/footer-inc.tpl"}
-
 </body>
 </html>
